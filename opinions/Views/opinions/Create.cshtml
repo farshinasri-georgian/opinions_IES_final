@@ -1,0 +1,46 @@
+﻿@model opinions.Models.opinion
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Add Opinion</h2>
+
+<h6>fill the form below and click on button to post your idea</h6>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="username" class="control-label">You logged as:</label>
+                <input asp-for="username" class="form-control"  value=@User.Identity?.Name readonly />
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+            <label asp-for="partOfCourse" class="control-label">Part of the study: </label>
+            <select asp-for="partOfCourse" class="form-control" id="dropdown">
+                <option value="Contents">Contents </option>
+                <option value="Assignments">Assignments</option>
+                <option value="Grades">Grades</option>
+            </select>
+            <span asp-validation-for="partOfCourse" class="text-danger"></span>
+
+            <div class="form-group">
+                <label asp-for="myopinion" class="control-label">Your Opinion:</label>
+                <textarea rows="3" asp-for="myopinion" class="form-control"></textarea>
+                <span asp-validation-for="myopinion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send It!" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,30 @@
+﻿
+
+<h1>List of Registered Users</h1>
+
+<table>
+    
+    <tbody>
+        @foreach (var user in ViewBag.Users)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@user.Name</h5>
+                    <p class="card-text">Student ID: @user.studentID</p>
+                    
+                    <p class="card-text">Email: @user.Email</p>
+                    @if (user.Email != "Administrator@iesopinion.com" && user.Email != "PowerUser@iesopinion.com")
+                    {
+                        <form method="post" asp-action="DeleteUser" asp-controller="Home">
+                            <input type="hidden" name="email" value="@user.Email" />
+
+                            <button type="submit" class="btn btn-danger">Delete User</button>
+                        </form>
+                    }
+                    
+                    
+                </div>
+            </div>
+        }
+    </tbody>
+</table>
